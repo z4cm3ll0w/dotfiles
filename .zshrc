@@ -73,7 +73,13 @@ ZSH_THEME="darkblood"
 plugins=(git eza zsh-autosuggestions grc sudo colorize zsh-syntax-highlighting) # <------------ add tmux here
 
 ZSH_COLORIZE_SYTLE=colorful
+
+# Start tmux automatically
 # ZSH_TMUX_AUTOSTART=true
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; t>
+  tmux a -t default || exec tmux new -s default && exit;
+fi
+
 
 source $ZSH/oh-my-zsh.sh
 
